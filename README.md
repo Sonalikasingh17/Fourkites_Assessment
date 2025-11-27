@@ -37,13 +37,6 @@ loss-landscape-analysis/
 └── README.md                 # Full documentation
 ```
 
-### What You'll Learn
-1. How to compute Hessian efficiently
-2. Connecting landscape geometry to generalization
-3. Implementing SAM optimizer from scratch
-4. Visualizing high-dimensional loss landscapes
-5. Professional code organization
-
 ### Expected Results
 - Flat minima (SAM) generalize 2-3% better than sharp minima (SGD)
 - Clear visualization showing valley sharpness vs flatness
@@ -91,7 +84,7 @@ Orchestrates entire pipeline - run this to see everything in action!
 
 ---
 
-## Interview Talking Points
+## Talking Points
 
 "I built a comprehensive framework for analyzing neural network loss landscapes. The project demonstrates that Sharpness-Aware Minimization finds flatter minima (measured via Hessian eigenvalues) which correlate with 2-3% better generalization. I visualized the high-dimensional loss surface by projecting onto carefully chosen 2D planes, showing clear valleys of different sharpness levels. The modular architecture uses Hutchinson's method for efficient Hessian computation, making it scalable to networks with millions of parameters."
 
@@ -109,18 +102,7 @@ Orchestrates entire pipeline - run this to see everything in action!
 
 ---
 
-## Common Questions
 
-**Q: Why not just use full Hessian?**
-A: Full Hessian is O(n²) memory. Hutchinson's method uses Hessian-vector products—only O(n) memory!
-
-**Q: How do you visualize billions of dimensions?**
-A: Project onto 2D planes. Use PCA for smart projections or random directions for broad exploration.
-
-**Q: Does flat always mean good generalization?**
-A: Mostly yes, but not always. We need to account for effective dimension and loss value.
-
----
 
 ## Performance Benchmarks
 
@@ -142,8 +124,4 @@ A: Mostly yes, but not always. We need to account for effective dimension and lo
 
 ---
 
-## Author
-Created for interview preparation - demonstrating practical implementation of recent ML research.
-
-**Ready to impress in your interview!** 🚀
 
