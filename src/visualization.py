@@ -24,10 +24,10 @@ grid_size=15, alpha=0.15):
 
         offset = 0
         with torch.no_grad():
-        for p in model.parameters():
-            param_size = p.numel()
-            p.copy_(new_params[offset:offset+param_size].view_as(p))
-            offset += param_size
+            for p in model.parameters():
+                param_size = p.numel()
+                p.copy_(new_params[offset:offset+param_size].view_as(p))
+                offset += param_size
 
 
         model.eval()

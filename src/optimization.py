@@ -20,7 +20,7 @@ class SAM(torch.optim.Optimizer):
     def first_step(self, zero_grad=False):
         """First step: standard gradient descent"""
         self.state['original_params'] = []
-            for group in self.param_groups:
+        for group in self.param_groups:
                 for p in group['params']:
                     if p.grad is not None:
                         self.state['original_params'].append(p.data.clone())
@@ -36,7 +36,7 @@ class SAM(torch.optim.Optimizer):
         for group in self.param_groups:
             for p in group['params']:
                 if p.grad is not None:
-                p.add_(p.grad, alpha=scale)
+                    p.add_(p.grad, alpha=scale)
 
         if zero_grad:
             self.base_optimizer.zero_grad()
@@ -46,7 +46,7 @@ class SAM(torch.optim.Optimizer):
             """Second step: apply update from perturbed point"""
             for group in self.param_groups:
                 for i, p in enumerate(group['params']):
-                    if i &lt; len(self.state.get('original_params', [])):
+                    if i < len(self.state.get('original_params', [])):
                         p.data = self.state['original_params'][i]
 
             self.base_optimizer.step()
@@ -56,8 +56,9 @@ class SAM(torch.optim.Optimizer):
 
 
 
-    def train_epoch(model, train_loader, criterion, optimizer, device):
+def train_epoch(model, train_loader, criterion, optimizer, device):
         """Train for one epoch"""
+
         model.train()
         total_loss = 0
 
@@ -71,9 +72,10 @@ class SAM(torch.optim.Optimizer):
             optimizer.step()
 
             total_loss += loss.item()
+
         return total_loss / len(train_loader)
     
-    def validate(model, test_loader, criterion, device):
+def validate(model, test_loader, criterion, device):
         """Validate on test set"""
         model.eval()
         total_loss = 0

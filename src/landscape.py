@@ -53,7 +53,7 @@ class LandscapeAnalyzer:
         traces = []
 
         for batch_idx, (inputs, targets) in enumerate(data_loader):
-            if batch_idx &gt;= 10:
+            if batch_idx >= 10:
                 break
 
             inputs = inputs.to(self.device)
@@ -92,7 +92,7 @@ class LandscapeAnalyzer:
             hvp = self.hessian_vector_product(batch_x, batch_y, v)
 
             hvp_norm = torch.norm(hvp)
-            if hvp_norm &gt; 1e-10:
+            if hvp_norm > 1e-10:
                 v = hvp / hvp_norm
 
         batch_x, batch_y = next(iter(data_loader))
@@ -115,7 +115,7 @@ class LandscapeAnalyzer:
         top_eig = self.compute_top_eigenvalue(data_loader)
 
         min_eig = max(trace / 1000, 1e-6)
-        condition_number = top_eig / min_eig if min_eig &gt; 0 else float('inf')
+        condition_number = top_eig / min_eig if min_eig > 0 else float('inf')
 
         return {
             'trace': trace,

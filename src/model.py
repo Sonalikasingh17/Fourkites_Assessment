@@ -22,21 +22,19 @@ class SimpleMLP(nn.Module):
         layers = []
         prev_size = input_size
 
-    for hidden_size in hidden_dims:
-        layers.append(nn.Linear(prev_size, hidden_size))
-        layers.append(nn.ReLU())
-        prev_size = hidden_size
+        for hidden_size in hidden_dims:
+            layers.append(nn.Linear(prev_size, hidden_size))
+            layers.append(nn.ReLU())
+            prev_size = hidden_size
     
-    layers.append(nn.Linear(prev_size, num_classes))
-    self.model = nn.Sequential(*layers)
+        layers.append(nn.Linear(prev_size, num_classes))
+        self.model = nn.Sequential(*layers)
 
 
     def forward(self, x):
-        if len(x.shape) &gt; 2:
+        if len(x.shape) > 2:
             x = x.view(x.size(0), -1)
         return self.model(x)
-    
-
     
 class SimpleCNN(nn.Module):
     """
